@@ -1,6 +1,5 @@
 import { galleryItems } from './gallery-items.js';
 
-
 console.log(galleryItems);
 
 const gallery = document.querySelector('.gallery');
@@ -25,12 +24,13 @@ const galleryMarkup = createGalleryMarkup(galleryItems);
 
 gallery.innerHTML = galleryMarkup;
 
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+const galleryLinks = document.querySelectorAll('.gallery__item');
 
-gallery.addEventListener('click', (event) => {
-  event.preventDefault();
-  lightbox.open();
+galleryLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const lightbox = new SimpleLightbox(link);
+    lightbox.open();
+  });
 });
