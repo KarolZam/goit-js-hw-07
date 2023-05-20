@@ -14,6 +14,7 @@ function createGalleryMarkup(items) {
           src="${item.preview}"
           alt="${item.description}"
         />
+        
       </a>
     `
     )
@@ -30,7 +31,14 @@ galleryLinks.forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();
 
-    const lightbox = new SimpleLightbox(link);
+    const lightbox = new SimpleLightbox(galleryLinks, {
+      captionsData: 'alt',
+      captionDelay: 250,
+      elementsSelector: '.gallery__item',
+      animationSpeed: 300,
+      history: true,
+    });
+
     lightbox.open();
   });
 });
